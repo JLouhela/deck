@@ -1,6 +1,7 @@
 include(FetchContent)
 FetchContent_Declare(
   googletest
+  DOWNLOAD_EXTRACT_TIMESTAMP ON
   URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
 )
 
