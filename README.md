@@ -3,12 +3,12 @@
 Practice implementation for c++ container mimicking a deck.
 
 Requirements:
-    - Must be able to contain elements of any one type
-    - Fulfills standard C++ container requirements: https://en.cppreference.com/w/cpp/named_req/Container
-    - Contains methods for peeking top and bottom values of the deck
-    - Contains method for drawing the top value from the deck
-    - Contains method for adding new value on top of the deck
-    - Contains method for shuffling the deck
+- Must be able to contain elements of any one type
+- Fulfills standard C++ container requirements: https://en.cppreference.com/w/cpp/named_req/Container
+- Contains methods for peeking top and bottom values of the deck
+- Contains method for drawing the top value from the deck
+- Contains method for adding new value on top of the deck
+- Contains method for shuffling the deck
 
 ## Limitations
 
@@ -32,3 +32,7 @@ Uses standard CMake solution for building.
 
 CMake will download GoogleTest when generating the solution.
 
+## Remarks
+
+Findings during development, notes for the assessment
+- Peeking top and bottom requires size check or exceptions to allow well defined usage. Since requirements for Container specify size, I opt to follow stl way and undefined behavior when peeking empty container is by design.
