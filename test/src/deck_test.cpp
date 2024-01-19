@@ -52,3 +52,15 @@ TEST(DeckTest, TestTop)
     EXPECT_EQ("switcharoo", top);
     EXPECT_EQ("switcharoo", ctop);
 }
+
+TEST(DeckTest, TestSize)
+{
+    Deck<int> deck;
+    EXPECT_EQ(0, deck.size());
+    deck.add(1);
+    EXPECT_EQ(1, deck.size());
+    deck.add(1);
+    deck.add(1);
+    deck.add(1);
+    EXPECT_EQ(4, deck.size());
+}

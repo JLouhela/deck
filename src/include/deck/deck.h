@@ -51,6 +51,13 @@ public:
         return m_container.front();
     }
 
+    // Get number of values in the deck
+    // @return Number of values in the deck
+    std::size_t size()
+    {
+        return m_container.size();
+    }
+
     
 private:
    Container m_container; 
