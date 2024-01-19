@@ -1,10 +1,18 @@
+#include <iterator>
 #include <vector>
 
 template <typename T, typename Container = std::vector<T>>
 class Deck
 {
 public:
-    
+    using value_type = T;
+    using reference = T&;
+    using const_reference = const T&;
+    using iterator = typename Container::iterator;
+    using const_iterator = typename Container::const_iterator;
+    using difference_type = typename Container::difference_type;
+    using size_type = typename Container::size_type;
+
     // Add value to top of the deck
     // @param[in] value
     void add(const T& value)
@@ -18,7 +26,7 @@ public:
     {
         m_container.push_back(std::move(value));
     }
-    
+
     // Peek top value of the deck
     // Undefined behavior if the deck is empty
     // @return top value of the deck
@@ -38,7 +46,7 @@ public:
     // Peek bottom value of the deck
     // Undefined behavior if the deck is empty
     // @return bottom value of the deck
-   const T& bottom() const 
+    const T& bottom() const
     {
         return m_container.front();
     }
@@ -67,7 +75,7 @@ public:
     {
         return m_container != rhs.m_container;
     }
-    
+
 private:
-   Container m_container; 
+    Container m_container;
 };

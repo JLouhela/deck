@@ -1,7 +1,12 @@
 #include "deck/deck.h"
-#include <string>
 
 #include <gtest/gtest.h>
+
+#include <cstddef>
+#include <list>
+#include <string>
+#include <type_traits>
+#include <vector>
 
 TEST(DeckTest, TestAdd)
 {
@@ -76,4 +81,23 @@ TEST(DeckTest, TestCopy)
     EXPECT_EQ(deck, deck2);
     deck.add(4);
     EXPECT_NE(deck, deck2);
+}
+
+TEST(DeckTest, Static_TestTypes)
+{
+    static_assert(std::is_same<Deck<int>::value_type, int>::value == true,
+                  "Compile time check failed: value_type doesn't match");
+    static_assert(std::is_same<Deck<int>::reference, int&>::value == true,
+                  "Compile time check failed: reference doesn't match");
+    static_assert(std::is_same<Deck<std::string>::const_reference, const std::string&>::value == true,
+                  "Compile time check failed: const_reference doesn't match");
+    static_assert(std::is_same<Deck<short>::iterator, std::vector<short>::iterator>::value == true,
+                  "Compile time check failed: iterator doesn't match");
+    static_assert(
+        std::is_same<Deck<int, std::list<int>>::const_iterator, std::list<int>::const_iterator>::value == true,
+        "Compile time check failed: const_iterator doesn't match");
+    static_assert(std::is_same<Deck<long>::difference_type, std::vector<long>::difference_type>::value == true,
+                  "Compile time check failed: difference_type doesn't match");
+    static_assert(std::is_same<Deck<int>::size_type, std::size_t>::value == true,
+                  "Compile time check failed: size_type doesn't match");
 }
