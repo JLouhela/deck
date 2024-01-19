@@ -8,13 +8,12 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_executable(
-  deck_test
+add_executable(deck_test
   src/deck_test.cpp
 )
-target_link_libraries(
-  deck_test
+target_link_libraries(deck_test  
   GTest::gtest_main
+  deck
 )
 
 include(GoogleTest)
