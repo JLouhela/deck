@@ -64,3 +64,16 @@ TEST(DeckTest, TestSize)
     deck.add(1);
     EXPECT_EQ(4, deck.size());
 }
+
+TEST(DeckTest, TestCopy)
+{
+    Deck<int> deck;
+    deck.add(1);
+    deck.add(2);
+    deck.add(3);
+
+    auto deck2 = deck;
+    EXPECT_EQ(deck, deck2);
+    deck.add(4);
+    EXPECT_NE(deck, deck2);
+}

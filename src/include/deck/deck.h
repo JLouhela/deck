@@ -58,6 +58,15 @@ public:
         return m_container.size();
     }
 
+    bool operator==(const Deck<T, Container>& rhs) const
+    {
+        return m_container == rhs.m_container;
+    }
+
+    bool operator!=(const Deck<T, Container>& rhs) const
+    {
+        return m_container != rhs.m_container;
+    }
     
 private:
    Container m_container; 
