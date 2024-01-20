@@ -76,6 +76,13 @@ public:
         return m_container.size();
     }
 
+    // Get maximum size of the deck
+    // @return amount of values that can be added to the deck
+    std::size_t max_size()
+    {
+        return m_container.max_size();
+    }
+
     // Check if container contains any values
     // @return true if no container is empty
     bool empty()

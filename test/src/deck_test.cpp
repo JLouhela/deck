@@ -212,3 +212,14 @@ TEST(DeckTest, TestSwap)
     EXPECT_EQ(6, deck2.draw());
     EXPECT_EQ(5, deck2.draw());
 }
+
+TEST(DeckTest, TestMaxSize)
+{
+    Deck<int> deck;
+    std::deque<int> deque;
+    EXPECT_EQ(deque.max_size(), deck.max_size());
+
+    Deck<int, std::vector<int>> deck2;
+    std::vector<int> vector;
+    EXPECT_EQ(vector.max_size(), deck2.max_size());
+}
