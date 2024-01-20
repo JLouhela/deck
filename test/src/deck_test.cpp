@@ -190,3 +190,25 @@ TEST(DeckTest, TestIterators)
         expected++;
     }
 }
+
+TEST(DeckTest, TestSwap)
+{
+    Deck<int> deck;
+    deck.add(5);
+    deck.add(6);
+    deck.add(7);
+
+    Deck<int> deck2;
+    deck2.add(100);
+    deck2.add(200);
+
+    std::swap(deck, deck2);
+    ASSERT_EQ(2, deck.size());
+    EXPECT_EQ(100, deck.bottom());
+    EXPECT_EQ(200, deck.top());
+
+    ASSERT_EQ(3, deck2.size());
+    EXPECT_EQ(7, deck2.draw());
+    EXPECT_EQ(6, deck2.draw());
+    EXPECT_EQ(5, deck2.draw());
+}

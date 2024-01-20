@@ -5,7 +5,8 @@
         "string": "cpp",
         "vector": "cpp",
         "memory": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "utility": "cpp"
     },
     "C_Cpp.formatting": "clangFormat"
 }
