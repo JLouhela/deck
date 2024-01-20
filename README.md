@@ -38,7 +38,7 @@ Findings during development, notes for the assessment
 
 1. Peeking top and bottom requires size check or exceptions to allow well defined usage. Since requirements for Container specify size, I opt to follow stl way and undefined behavior when peeking empty container is by design. Exceptions would also be an option, but from my experiences these are not always enabled.
 2. I'm a bit rusty with templates and move semantics in a sense that there are couple of use cases requiring std::move I would've missed if I didn't write tests.
-3. I'm a lot rusty with SFINAE (found out while thinking about what to do with shuffle).
+3. I'm a bit more rusty with SFINAE (found out while thinking about what to do with shuffle).
 4. Shuffling seems like either an API design- or a trick question to me. Since deck must fulfill container requirements, one can use shuffle from standard library. Therefore, if shuffle is implemented as a member function as requested, it should be either limiting the scope, hiding some details or doing something differently. Either way, there are two problems to solve:
     - One aspect is to provide an API where two identical decks can provide different results when shuffled, this requires seed to be either randomized or given from the outside. Randomized seed is bad option for testing and making things deterministic when needed.
     - For best results, deck should also maintain the random number generator and only reset random number generator with new seed. This violates single responsibility principle, and we already have a solution, shuffle in the standard library as a free function.
