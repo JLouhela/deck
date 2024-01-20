@@ -147,8 +147,8 @@ public:
         std::shuffle(m_container.begin(), m_container.end(), std::mt19937(seed));
     }
 
-    // Reorder values in the deck with default seed
-    // Uses std::mt19937 as a random number generator
+    // Reorder values in the deck
+    // Uses default seed and default random number generator
     void shuffle()
     {
         shuffle(0U);

@@ -283,7 +283,7 @@ TEST(DeckTest, TestShuffleSeed)
 
     EXPECT_NE(original, deck);
 
-    // Same seed should yield identical containers
+    // Same seed with same input should yield identical containers
     original.shuffle(seed);
     EXPECT_EQ(original, deck);
 }
@@ -301,7 +301,7 @@ TEST(DeckTest, TestDefaultShuffleSeed)
     deck.shuffle();
     EXPECT_NE(original, deck);
 
-    // Same seed should yield identical containers
+    // Same seed with same input should yield identical containers
     original.shuffle();
     EXPECT_EQ(original, deck);
 }
