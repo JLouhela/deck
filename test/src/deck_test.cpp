@@ -107,6 +107,21 @@ TEST(DeckTest, TestCopy)
     EXPECT_NE(deck, deck3);
 }
 
+TEST(DeckTest, TestAssignment)
+{
+    Deck<int> deck;
+    deck.add(1);
+    deck.add(2);
+    deck.add(3);
+
+    Deck<int> deck2;
+    deck2.add(5);
+
+    deck2 = deck;
+    EXPECT_EQ(3, deck2.size());
+    EXPECT_EQ(deck, deck2);
+}
+
 TEST(DeckTest, TestEmpty)
 {
     Deck<int> deck;
