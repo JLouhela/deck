@@ -83,6 +83,36 @@ public:
         return m_container.empty();
     }
 
+    // Get iterator to first value in the deck
+    // Equal to end if deck is empty
+    // @return iterator
+    iterator begin()
+    {
+        return m_container.begin();
+    }
+
+    // Get const iterator to first value in the deck
+    // Equal to end if deck is empty
+    // @return const iterator
+    const_iterator cbegin() const
+    {
+        return m_container.begin();
+    }
+
+    // Get iterator beyond the last value in the deck
+    // @return iterator after the last value in the deck
+    iterator end()
+    {
+        return m_container.end();
+    }
+
+    // Get const iterator beyond the last value in the deck
+    // @return const iterator after the last value in the deck
+    const_iterator cend() const
+    {
+        return m_container.cend();
+    }
+
     friend bool operator==(const Deck<T, Container>& lhs, const Deck<T, Container>& rhs)
     {
         return lhs.m_container == rhs.m_container;

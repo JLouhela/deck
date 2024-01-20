@@ -168,3 +168,25 @@ TEST(DeckTest, TestMovable)
     ptr = deck.draw();
     EXPECT_EQ("rofl", *ptr);
 }
+
+TEST(DeckTest, TestIterators)
+{
+    Deck<int> deck;
+    deck.add(1);
+    deck.add(2);
+    deck.add(3);
+
+    auto it = deck.begin();
+    EXPECT_EQ(1, *it++);
+    EXPECT_EQ(2, *it);
+    EXPECT_EQ(3, *(++it));
+    EXPECT_EQ(deck.end(), ++it);
+    EXPECT_EQ(deck.end(), deck.cend());
+
+    int expected = 1;
+    for (const auto& value : deck)
+    {
+        EXPECT_EQ(expected, value);
+        expected++;
+    }
+}
