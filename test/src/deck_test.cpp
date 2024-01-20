@@ -146,6 +146,10 @@ TEST(DeckTest, TestMove)
     EXPECT_EQ(100, deck.draw());
     EXPECT_EQ(10, deck.draw());
     EXPECT_EQ(1, deck.draw());
+
+    // Container semantics: "destroys or move-assigns all elements of a from elements of rv"
+    // -> expect source container to be empty now
+    EXPECT_TRUE(deck.empty());
 }
 
 TEST(DeckTest, TestMovable)
