@@ -21,9 +21,9 @@ public:
         m_container.push_back(std::move(value));
     }
 
-    // Remove value from top of the deck and return a copy of it
-    // Undefined behavior if the deck is empty
-    // @return top value of the deck
+    // Remove topmost value from the deck and return a copy of it
+    // Behavior is undefined if the deck is empty
+    // @return topmost value of the deck
     T draw()
     {
         T value = std::move(m_container.back());
@@ -31,54 +31,54 @@ public:
         return value;
     }
 
-    // Peek top value of the deck
-    // Undefined behavior if the deck is empty
-    // @return top value of the deck
+    // Get value from the top of the deck
+    // Behavior is undefined if the deck is empty
+    // @return topmost value of the deck
     const T& top() const
     {
         return m_container.back();
     }
 
-    // Peek top value of the deck
-    // Undefined behavior if the deck is empty
-    // @return top value of the deck
+    // Get value from the top of the deck
+    // Behavior is undefined if the deck is empty
+    // @return topmost value of the deck
     T& top()
     {
         return m_container.back();
     }
 
-    // Peek bottom value of the deck
-    // Undefined behavior if the deck is empty
+    // Get value from the bottom of the deck
+    // Behavior is undefined if the deck is empty
     // @return bottom value of the deck
     const T& bottom() const
     {
         return m_container.front();
     }
 
-    // Peek bottom value of the deck
-    // Undefined behavior if the deck is empty
+    // Get value from the bottom of the deck
+    // Behavior is undefined if the deck is empty
     // @return bottom value of the deck
     T& bottom()
     {
         return m_container.front();
     }
 
-    // Get number of values in the deck
+    // Get number of values stored in the deck
     // @return Number of values in the deck
     std::size_t size()
     {
         return m_container.size();
     }
 
-    // Get maximum size of the deck
-    // @return amount of values that can be added to the deck
+    // Get maximum supported capacity of the deck
+    // @return amount of values that deck can store
     std::size_t max_size()
     {
         return m_container.max_size();
     }
 
     // Check if container contains any values
-    // @return true if no container is empty
+    // @return true if container is empty
     bool empty()
     {
         return m_container.empty();
@@ -93,7 +93,7 @@ public:
     }
 
     // Get iterator to first value in the deck
-    // Equal to end if deck is empty
+    // Equal to end() if deck is empty
     // @return iterator
     const_iterator begin() const
     {
@@ -101,7 +101,7 @@ public:
     }
 
     // Get const iterator to first value in the deck
-    // Equal to end if deck is empty
+    // Equal to cend() if deck is empty
     // @return const iterator
     const_iterator cbegin() const
     {
@@ -132,7 +132,7 @@ public:
     // Reorder values in the deck
     // Requires random number generator to be provided by the caller
     // param[in] urbg - a UniformRandomBitGenerator (such as std::mt19937),
-    //                  or a function object returning random difference_type values
+    //                  or a function object capable of returning random difference_type values
     template <class URBG>
     void shuffle(URBG&& urbg)
     {

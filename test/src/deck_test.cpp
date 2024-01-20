@@ -266,3 +266,19 @@ TEST(DeckTest, TestShuffle)
     // I take my chances ere and expect that shuffle changes something when container is large enough
     EXPECT_NE(original, deck);
 }
+
+TEST(DeckTest, TestSort)
+{
+    Deck<int> deck;
+    deck.add(5);
+    deck.add(2);
+    deck.add(1);
+    deck.add(4);
+    deck.add(3);
+
+    std::sort(deck.begin(), deck.end(), [](int lhs, int rhs) { return lhs < rhs; });
+    for (int i = 5; i > 0; --i)
+    {
+        EXPECT_EQ(i, deck.draw());
+    }
+}
