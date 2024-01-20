@@ -208,6 +208,10 @@ TEST(DeckTest, TestIterators)
         EXPECT_EQ(expected, value);
         expected++;
     }
+
+    const auto begin = deck.begin();
+    EXPECT_EQ(begin, deck.cbegin());
+    EXPECT_EQ(begin, deck.begin());
 }
 
 TEST(DeckTest, TestSwap)

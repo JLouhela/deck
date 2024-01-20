@@ -98,6 +98,14 @@ public:
         return m_container.begin();
     }
 
+    // Get iterator to first value in the deck
+    // Equal to end if deck is empty
+    // @return iterator
+    const_iterator begin() const
+    {
+        return m_container.begin();
+    }
+
     // Get const iterator to first value in the deck
     // Equal to end if deck is empty
     // @return const iterator
@@ -109,6 +117,13 @@ public:
     // Get iterator beyond the last value in the deck
     // @return iterator after the last value in the deck
     iterator end()
+    {
+        return m_container.end();
+    }
+
+    // Get iterator beyond the last value in the deck
+    // @return iterator after the last value in the deck
+    const_iterator end() const
     {
         return m_container.end();
     }
