@@ -10,6 +10,8 @@
 #include <string>
 #include <type_traits>
 
+using namespace jlo;
+
 TEST(DeckTest, Static_TestTypes)
 {
     static_assert(std::is_same<Deck<int>::value_type, int>::value == true,
@@ -265,12 +267,17 @@ TEST(DeckTest, TestShuffle)
     // Academic issue: I believe there is a chance that rng reorders elements back to the original order
     // I take my chances ere and expect that shuffle changes something when container is large enough
     EXPECT_NE(original, deck);
+
+    // When rng implementation is given from the outside, shuffling again with same
+    // generator doesn't yield same results, like with seeded overload.
+    original.shuffle(rng);
+    EXPECT_NE(original, deck);
 }
 
-TEST(DeckTest, TestShuffleSeed)
+TEST(DeckTest, TestShuffle2)
 {
     Deck<int> deck;
-    for (int i = 0; i < 100; ++i)
+    for (int i = 0; i < 10000; ++i)
     {
         deck.add(i);
     }
@@ -278,32 +285,17 @@ TEST(DeckTest, TestShuffleSeed)
     auto original = deck;
 
     std::random_device rd;
-    const auto seed = rd();
-    deck.shuffle(seed);
+    std::default_random_engine rng{rd()};
+    deck.shuffle(rng);
 
+    // Academic issue: I believe there is a chance that rng reorders elements back to the original order
+    // I take my chances ere and expect that shuffle changes something when container is large enough
     EXPECT_NE(original, deck);
 
-    // Same seed with same input should yield identical containers
-    original.shuffle(seed);
-    EXPECT_EQ(original, deck);
-}
-
-TEST(DeckTest, TestDefaultShuffleSeed)
-{
-    Deck<int> deck;
-    for (int i = 0; i < 100; ++i)
-    {
-        deck.add(i);
-    }
-
-    auto original = deck;
-
-    deck.shuffle();
+    // When rng implementation is given from the outside, shuffling again with same
+    // generator doesn't yield same results, like with seeded overload.
+    original.shuffle(rng);
     EXPECT_NE(original, deck);
-
-    // Same seed with same input should yield identical containers
-    original.shuffle();
-    EXPECT_EQ(original, deck);
 }
 
 TEST(DeckTest, TestSort)
