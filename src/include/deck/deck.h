@@ -1,7 +1,7 @@
+#include <deque>
 #include <iterator>
-#include <vector>
 
-template <typename T, typename Container = std::vector<T>>
+template <typename T, typename Container = std::deque<T>>
 class Deck
 {
 public:
