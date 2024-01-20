@@ -17,7 +17,7 @@ Targeted for C++14 version
 - Uses random number generation for shuffle
 - GoogleTest requires C++14
 
-Not trying to make this compatible with C++03, although technically possible.
+As this was not requested, I will not try to make this compatible with C++03, although technically possible.
 
 ## Building
 
