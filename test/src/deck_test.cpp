@@ -98,9 +98,13 @@ TEST(DeckTest, TestCopy)
     deck.add(3);
 
     auto deck2 = deck;
+    auto deck3(deck);
     EXPECT_EQ(deck, deck2);
+    EXPECT_EQ(deck, deck3);
+
     deck.add(4);
     EXPECT_NE(deck, deck2);
+    EXPECT_NE(deck, deck3);
 }
 
 TEST(DeckTest, TestEmpty)
