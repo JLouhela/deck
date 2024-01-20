@@ -106,6 +106,27 @@ TEST(DeckTest, TestEmpty)
 {
     Deck<int> deck;
     EXPECT_TRUE(deck.empty());
+    EXPECT_EQ(0, deck.size());
     deck.add(1);
     EXPECT_FALSE(deck.empty());
+    EXPECT_EQ(1, deck.size());
+}
+
+TEST(DeckTest, TestDraw)
+{
+    Deck<char> deck;
+    deck.add('a');
+    deck.add('b');
+    deck.add('c');
+
+    EXPECT_EQ(3, deck.size());
+    EXPECT_EQ('c', deck.draw());
+
+    EXPECT_EQ(2, deck.size());
+    EXPECT_EQ('b', deck.draw());
+
+    EXPECT_EQ(1, deck.size());
+    EXPECT_EQ('a', deck.draw());
+
+    EXPECT_TRUE(deck.empty());
 }

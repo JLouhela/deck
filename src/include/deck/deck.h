@@ -27,6 +27,16 @@ public:
         m_container.push_back(std::move(value));
     }
 
+    // Remove value from top of the deck and return a copy of it
+    // Undefined behavior if the deck is empty
+    // @return top value of the deck
+    T draw()
+    {
+        T value = m_container.back();
+        m_container.pop_back();
+        return value;
+    }
+
     // Peek top value of the deck
     // Undefined behavior if the deck is empty
     // @return top value of the deck
