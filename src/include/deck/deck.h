@@ -66,6 +66,13 @@ public:
         return m_container.size();
     }
 
+    // Check if container contains any values
+    // @return true if no container is empty
+    bool empty()
+    {
+        return m_container.empty();
+    }
+
     friend bool operator==(const Deck<T, Container>& lhs, const Deck<T, Container>& rhs)
     {
         return lhs.m_container == rhs.m_container;
