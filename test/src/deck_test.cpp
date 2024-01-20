@@ -4,6 +4,7 @@
 
 #include <cstddef>
 #include <list>
+#include <memory>
 #include <string>
 #include <type_traits>
 #include <vector>
@@ -129,4 +130,37 @@ TEST(DeckTest, TestDraw)
     EXPECT_EQ('a', deck.draw());
 
     EXPECT_TRUE(deck.empty());
+}
+
+TEST(DeckTest, TestMove)
+{
+    Deck<int> deck;
+    deck.add(1);
+    deck.add(10);
+    deck.add(100);
+
+    ASSERT_EQ(3, deck.size());
+
+    auto&& moved_deck = std::move(deck);
+    ASSERT_EQ(3, moved_deck.size());
+    EXPECT_EQ(100, deck.draw());
+    EXPECT_EQ(10, deck.draw());
+    EXPECT_EQ(1, deck.draw());
+}
+
+TEST(DeckTest, TestMovable)
+{
+    Deck<std::unique_ptr<std::string>> deck;
+    auto str = std::make_unique<std::string>("rofl");
+    deck.add(std::move(str));
+    deck.add(std::make_unique<std::string>("mao"));
+
+    EXPECT_EQ("rofl", *deck.bottom());
+    EXPECT_EQ("mao", *deck.top());
+
+    auto ptr = deck.draw();
+    EXPECT_EQ("mao", *ptr);
+
+    ptr = deck.draw();
+    EXPECT_EQ("rofl", *ptr);
 }

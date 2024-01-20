@@ -32,7 +32,7 @@ public:
     // @return top value of the deck
     T draw()
     {
-        T value = m_container.back();
+        T value = std::move(m_container.back());
         m_container.pop_back();
         return value;
     }
