@@ -131,12 +131,27 @@ public:
 
     // Reorder values in the deck
     // Requires random number generator to be provided by the caller
-    // param[in] urbg - a UniformRandomBitGenerator (such as std::mt19937),
-    //                  or a function object capable of returning random difference_type values
+    // param[in] urbg - an object filling UniformRandomBitGenerator requirements (such as std::mt19937)
     template <class URBG>
     void shuffle(URBG&& urbg)
     {
-        std::shuffle(m_container.begin(), m_container.end(), urbg);
+        std::shuffle(m_container.begin(), m_container.end(), std::forward<URBG>(urbg));
+    }
+
+    // Reorder values in the deck based on the seed
+    // Uses std::mt19937 as a random number generator
+    // Please see overload with URBG&& if the generator needs to be specified by the client
+    // param[in] seed - A seeding value for the random number generator.
+    void shuffle(uint_fast32_t seed)
+    {
+        std::shuffle(m_container.begin(), m_container.end(), std::mt19937(seed));
+    }
+
+    // Reorder values in the deck with default seed
+    // Uses std::mt19937 as a random number generator
+    void shuffle()
+    {
+        shuffle(0U);
     }
 
     friend bool operator==(const Deck<T, Container>& lhs, const Deck<T, Container>& rhs)

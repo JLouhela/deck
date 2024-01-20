@@ -36,3 +36,5 @@ CMake will download GoogleTest when generating the solution.
 
 Findings during development, notes for the assessment
 - Peeking top and bottom requires size check or exceptions to allow well defined usage. Since requirements for Container specify size, I opt to follow stl way and undefined behavior when peeking empty container is by design.
+- Shuffling is an API design question: do we want client to be able to specify the algorithm, or not? If not, seed is sufficient and deck can maintain the random number generator. I added both, but depending on the use case
+this may not be required.

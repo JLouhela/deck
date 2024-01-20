@@ -267,6 +267,45 @@ TEST(DeckTest, TestShuffle)
     EXPECT_NE(original, deck);
 }
 
+TEST(DeckTest, TestShuffleSeed)
+{
+    Deck<int> deck;
+    for (int i = 0; i < 100; ++i)
+    {
+        deck.add(i);
+    }
+
+    auto original = deck;
+
+    std::random_device rd;
+    const auto seed = rd();
+    deck.shuffle(seed);
+
+    EXPECT_NE(original, deck);
+
+    // Same seed should yield identical containers
+    original.shuffle(seed);
+    EXPECT_EQ(original, deck);
+}
+
+TEST(DeckTest, TestDefaultShuffleSeed)
+{
+    Deck<int> deck;
+    for (int i = 0; i < 100; ++i)
+    {
+        deck.add(i);
+    }
+
+    auto original = deck;
+
+    deck.shuffle();
+    EXPECT_NE(original, deck);
+
+    // Same seed should yield identical containers
+    original.shuffle();
+    EXPECT_EQ(original, deck);
+}
+
 TEST(DeckTest, TestSort)
 {
     Deck<int> deck;
