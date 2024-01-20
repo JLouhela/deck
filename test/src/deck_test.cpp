@@ -6,6 +6,7 @@
 #include <deque>
 #include <list>
 #include <memory>
+#include <random>
 #include <string>
 #include <type_traits>
 
@@ -245,4 +246,23 @@ TEST(DeckTest, TestMaxSize)
     Deck<int, std::vector<int>> deck2;
     std::vector<int> vector;
     EXPECT_EQ(vector.max_size(), deck2.max_size());
+}
+
+TEST(DeckTest, TestShuffle)
+{
+    Deck<int> deck;
+    for (int i = 0; i < 10000; ++i)
+    {
+        deck.add(i);
+    }
+
+    auto original = deck;
+
+    std::random_device rd;
+    std::mt19937 rng{rd()};
+    deck.shuffle(rng);
+
+    // Academic issue: I believe there is a chance that rng reorders elements back to the original order
+    // I take my chances ere and expect that shuffle changes something when container is large enough
+    EXPECT_NE(original, deck);
 }

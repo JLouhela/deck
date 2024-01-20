@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <deque>
 #include <iterator>
 
@@ -126,6 +127,16 @@ public:
     const_iterator cend() const
     {
         return m_container.cend();
+    }
+
+    // Reorder values in the deck
+    // Requires random number generator to be provided by the caller
+    // param[in] urbg - a UniformRandomBitGenerator (such as std::mt19937),
+    //                  or a function object returning random difference_type values
+    template <class URBG>
+    void shuffle(URBG&& urbg)
+    {
+        std::shuffle(m_container.begin(), m_container.end(), urbg);
     }
 
     friend bool operator==(const Deck<T, Container>& lhs, const Deck<T, Container>& rhs)
