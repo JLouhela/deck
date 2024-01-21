@@ -20,7 +20,14 @@ public:
 
     // Add value to top of the deck
     // @param[in] value
-    void add(T value)
+    void add(const T& value)
+    {
+        m_container.push_back(value);
+    }
+
+    // Add value to top of the deck
+    // @param[in] value
+    void add(T&& value)
     {
         m_container.push_back(std::move(value));
     }

@@ -36,7 +36,7 @@ CMake will download GoogleTest when generating the solution.
 
 Findings during development, notes for the assessment
 
-1. Peeking top and bottom requires size check or exceptions to allow well defined usage. Since requirements for Container specify size, I opt to follow stl way and undefined behavior when peeking empty container is by design. Exceptions would also be an option, but from my experiences these are not always enabled.
+1. Peeking top and bottom requires size check or exceptions to allow well defined usage. Since requirements for Container specify size, I opt to follow stl way and undefined behavior when peeking empty container is by design. While I'm not a big fan of undefined behavior, it's aligned with stl usage in general. Exceptions would also be an option, but from my experiences these are not always enabled.
 2. I'm a bit rusty with templates and move semantics in a sense that there are couple of use cases requiring std::move I would've missed if I didn't write tests.
 3. I'm a bit more rusty with SFINAE (found out while thinking about what to do with shuffle).
 4. Shuffling seems like either an API design- or a trick question to me. Since deck must fulfill container requirements, one can use shuffle from standard library. Therefore, if shuffle is implemented as a member function as requested, it should be either limiting the scope, hiding some details or doing something differently. Either way, there are two problems to solve:
