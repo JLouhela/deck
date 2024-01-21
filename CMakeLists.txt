@@ -1,6 +1,7 @@
 cmake_minimum_required (VERSION 3.9.0)
 
-# GoogleTest requires at least C++14
+# GoogleTest says it requires at least C++14
+# From my personal experience, C++11 seems to be enough for this solution
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
